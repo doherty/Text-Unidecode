@@ -185,4 +185,5 @@ lib/Text/Unidecode/xfc.pm
 lib/Text/Unidecode/xfd.pm
 lib/Text/Unidecode/xfe.pm
 lib/Text/Unidecode/xff.pm
-test.pl
+t/01-basic.t
+t/02-complex.t
