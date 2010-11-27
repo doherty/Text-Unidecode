@@ -1,95 +1,90 @@
-
-require 5.006;
-package Text::Unidecode;  # Time-stamp: "2001-07-14 02:29:41 MDT"
-use utf8;
 use strict;
-use integer; # vroom vroom!
+use warnings;
+require 5.006;
+
+package Text::Unidecode;    # Time-stamp: "2001-07-14 02:29:41 MDT"
+use utf8;
+use integer;                # vroom vroom!
 use vars qw($VERSION @ISA @EXPORT @Char $NULLMAP);
 $VERSION = '0.04';
-require Exporter;
-@ISA = ('Exporter');
-@EXPORT = ('unidecode');
+use Exporter qw(import);
+@EXPORT = qw(unidecode);
 
-BEGIN { *DEBUG = sub () {0} unless defined &DEBUG }
-
-$NULLMAP = [('[?] ') x 0x100];  # for blocks we can't load
-
-#--------------------------------------------------------------------------
-{
-  my $x = join '', "\x00" .. "\x7F";
-  die "the 7-bit purity test fails!" unless $x eq unidecode($x);
+BEGIN {
+    *DEBUG = sub () { 0 }
+        unless defined &DEBUG;
 }
 
-#--------------------------------------------------------------------------
+$NULLMAP = [('[?] ') x 0x100];    # for blocks we can't load
 
-sub unidecode {
-  # Destructive in void context -- in other contexts, nondestructive.
+{
+    my $x = join '', "\x00" .. "\x7F";
+    die "the 7-bit purity test fails!" unless $x eq unidecode($x);
+}
 
-  unless(@_) {
-    # Nothing coming in
-    return() if wantarray;
-    return '';
-  }
-  @_ = map $_, @_ if defined wantarray;
-   # We're in list or scalar context, NOT void context.
-   #  So make @_'s items no longer be aliases.
-   # Otherwise, let @_ be aliases, and alter in-place.
+sub unidecode { # Destructive in void context -- in other contexts, nondestructive.
+    unless (@_) {
+        # Nothing coming in
+        return () if wantarray;
+        return '';
+    }
+    @_ = map { $_ } @_ if defined wantarray;
 
-  foreach my $x (@_) {
-    next unless defined $x;    
-    $x =~ s~([^\x00-\x7f])~${$Char[ord($1)>>8]||t($1)}[ord($1)&255]~egs;
-      # Replace character 0xABCD with $Char[0xAB][0xCD], loading
-      #  the table as needed.
-  }
+    # We're in list or scalar context, NOT void context.
+    # So make @_'s items no longer be aliases.
+    # Otherwise, let @_ be aliases, and alter in-place.
+    foreach my $x (@_) {
+        next unless defined $x;
+        $x =~ s~([^\x00-\x7f])~${$Char[ord($1)>>8]||t($1)}[ord($1)&255]~egs;
+        # Replace character 0xABCD with $Char[0xAB][0xCD], loading
+        # the table as needed.
+    }
 
-  return unless defined wantarray; # void context
-  return @_ if wantarray;  # normal list context -- return the copies
-  # Else normal scalar context:
-  return $_[0] if @_ == 1;
-  return join '', @_;      # rarer fallthru: a list in, but a scalar out.
+    return unless defined wantarray;    # void context
+    return @_ if wantarray;             # normal list context - return the copies
+                                        # else normal scalar context:
+    return $_[0] if @_ == 1;
+    return join '', @_;                 # rarer fallthrough: a list in, but a scalar out
 }
 
 sub t {
- # load (and return) a char table for this character
- # this should get called only once per table per session.
- my $bank = ord($_[0]) >> 8;
- return $Char[$bank] if $Char[$bank];
- 
-        {
-           DEBUG and printf "Loading %s::x%02x\n", __PACKAGE__, $bank;
-           local $SIG{'__DIE__'};
-           eval(sprintf 'require %s::x%02x;', __PACKAGE__, $bank);
-        }
-        
-        # Now see how that fared...
-        if(ref($Char[$bank] || '') ne 'ARRAY') {
-          DEBUG > 1 and print
-            " Loading failed for bank $bank (err $@).  Using null map.\n";
-          return $Char[$bank] = $NULLMAP;
-        } else {
-          DEBUG > 1 and print " Succeeded.\n";
-          if(DEBUG) {
-            # Sanity-check it:
-            my $cb = $Char[$bank];
-            unless(@$cb == 256) {
-              printf "Block x%02x is of size %d -- chopping to 256\n",
-                  scalar(@$cb);
-              $#$cb = 255;   # pre-extend the array, or chop it to size.
+    # load (and return) a char table for this character
+    # this should get called only once per table per session.
+    my $bank = ord($_[0]) >> 8;
+    return $Char[$bank] if $Char[$bank];
+
+    {
+        DEBUG and printf "Loading %s::x%02x\n", __PACKAGE__, $bank;
+        local $SIG{'__DIE__'};
+        eval(sprintf 'require %s::x%02x;', __PACKAGE__, $bank);
+    }
+
+    # Now see how that fared...
+    if (ref($Char[$bank] || '') ne 'ARRAY') {
+        DEBUG > 1 and print " Loading failed for bank $bank (err $@).  Using null map.\n";
+        return $Char[$bank] = $NULLMAP;
+    }
+    else {
+        DEBUG > 1 and print " Succeeded.\n";
+        if (DEBUG) {
+            my $cb = $Char[$bank]; # Sanity-check it
+            unless (@$cb == 256) {
+                printf "Block x%02x is of size %d -- chopping to 256\n", scalar(@$cb);
+                $#$cb = 255;    # pre-extend the array, or chop it to size.
             }
-            for(my $i = 0; $i < 256; ++$i) {
-              unless(defined $cb->[$i]) {
-                printf "Undef at position %d in block x%02x\n",
-                  $i, $bank;
-                $cb->[$i] = '';
-              }
+            for (my $i = 0; $i < 256; ++$i) {
+                unless (defined $cb->[$i]) {
+                    printf "Undef at position %d in block x%02x\n", $i, $bank;
+                    $cb->[$i] = '';
+                }
             }
-          }
-          return $Char[$bank];
         }
+        return $Char[$bank];
+    }
 }
 
-#--------------------------------------------------------------------------
 1;
+
 __END__
 
 =head1 NAME
@@ -405,28 +400,28 @@ a sense of humor, the CDROM that comes with /The Unicode Standard,
 Version 3.0/ book, has an audio track of the Unicode anthem [!].
 The lyrics are:
 
-	Unicode, Oh Unicode!
-	--------------------
+    Unicode, Oh Unicode!
+    --------------------
 
-	Oh, beautiful for Uni-Han,
-	for spacious User Zone!
-	For rampant scripts of India
-	and polar Nunavut!
+    Oh, beautiful for Uni-Han,
+    for spacious User Zone!
+    For rampant scripts of India
+    and polar Nunavut!
 
-	  Chorus:
-		Unicode, Oh Unicode!
-		May all your code points shine forever
-		and your beacon light the world!
+    Chorus:
+        Unicode, Oh Unicode!
+        May all your code points shine forever
+        and your beacon light the world!
 
-	Oh, marvelous for sixteen bits,
-	for precious surrogates!
-	For Bi-Di algorithm dear
-	and stalwart I-P-A!
+    Oh, marvelous for sixteen bits,
+    for precious surrogates!
+    For Bi-Di algorithm dear
+    and stalwart I-P-A!
 
-	Oh, glorious for Hangul fair,
-	for symbols mathematical!
-	For myriad exotic scripts
-	and punctuation we adore!
+    Oh, glorious for Hangul fair,
+    for symbols mathematical!
+    For myriad exotic scripts
+    and punctuation we adore!
 
 # End.
 
