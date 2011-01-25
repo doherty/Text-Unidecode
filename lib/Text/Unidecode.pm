@@ -11,6 +11,7 @@ use vars qw(@Char);
 
 use Exporter qw(import);
 our @EXPORT = qw(unidecode);
+our @EXPORT_OK = qw(unidecode_to_charset);
 
 BEGIN {
     *DEBUG = sub () { 0 }
@@ -236,6 +237,26 @@ sub _t {
         }
         return $Char[$bank];
     }
+}
+
+=head2 unidecode_to_charset
+
+This attempts to C<unidecode()> to any arbitrary charset, rather than to US-ASCII.
+The function is not exported by default.
+
+Pass the target charset as the first parameter (default is iso-8859-1), and the
+text to transliterate as the second.
+
+=cut
+
+sub unidecode_to_charset {
+    require Encode;
+    die 'Encode version 2.12 required--this is only version ' . Encode->VERSION
+        unless Encode->VERSION >= 2.12; # For coderef support
+    my $charset = shift || 'ascii'; # By default, act the same as unidecode()
+    my $text    = shift;
+
+    return Encode::encode($charset, $text, sub { unidecode( chr $_[0] ) });
 }
 
 1;
