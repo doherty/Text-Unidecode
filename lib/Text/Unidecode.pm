@@ -224,7 +224,7 @@ sub _t {
         if (DEBUG) {
             my $cb = $Char[$bank]; # Sanity-check it
             unless (@$cb == 256) {
-                printf "Block x%02x is of size %d -- chopping to 256\n", scalar(@$cb);
+                printf "Block x%02x is of size %d -- chopping to 256\n", $cb, scalar(@$cb);
                 $#$cb = 255;    # pre-extend the array, or chop it to size.
             }
             for (my $i = 0; $i < 256; ++$i) {

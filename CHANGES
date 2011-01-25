@@ -2,6 +2,7 @@ Revision history for Perl module Text::Unidecode
 
 {{$NEXT}}
     * Fixed up test suite to avoid "Wide character in print" warnings
+    * Fixed missing variable in debugging sprintf
 
 2001-07-14  Sean M. Burke  sburke@cpan.org
     * Release 0.04 -- forgot to put TODO.txt in 0.03.  Now including
