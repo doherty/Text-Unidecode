@@ -2,105 +2,29 @@ use strict;
 use warnings;
 require 5.006;
 
-package Text::Unidecode;    # Time-stamp: "2001-07-14 02:29:41 MDT"
+package Text::Unidecode;
+# ABSTRACT: US-ASCII transliterations of Unicode text
+
 use utf8;
 use integer;                # vroom vroom!
-use vars qw($VERSION @ISA @EXPORT @Char $NULLMAP);
-$VERSION = '0.04';
+use vars qw(@Char);
+
 use Exporter qw(import);
-@EXPORT = qw(unidecode);
+our @EXPORT = qw(unidecode);
 
 BEGIN {
     *DEBUG = sub () { 0 }
         unless defined &DEBUG;
 }
 
-$NULLMAP = [('[?] ') x 0x100];    # for blocks we can't load
-
-{
-    my $x = join '', "\x00" .. "\x7F";
-    die "the 7-bit purity test fails!" unless $x eq unidecode($x);
-}
-
-sub unidecode { # Destructive in void context -- in other contexts, nondestructive.
-    unless (@_) {
-        # Nothing coming in
-        return () if wantarray;
-        return '';
-    }
-    @_ = map { $_ } @_ if defined wantarray;
-
-    # We're in list or scalar context, NOT void context.
-    # So make @_'s items no longer be aliases.
-    # Otherwise, let @_ be aliases, and alter in-place.
-    foreach my $x (@_) {
-        next unless defined $x;
-        $x =~ s~([^\x00-\x7f])~${$Char[ord($1)>>8]||t($1)}[ord($1)&255]~egs;
-        # Replace character 0xABCD with $Char[0xAB][0xCD], loading
-        # the table as needed.
-    }
-
-    return unless defined wantarray;    # void context
-    return @_ if wantarray;             # normal list context - return the copies
-                                        # else normal scalar context:
-    return $_[0] if @_ == 1;
-    return join '', @_;                 # rarer fallthrough: a list in, but a scalar out
-}
-
-sub t {
-    # load (and return) a char table for this character
-    # this should get called only once per table per session.
-    my $bank = ord($_[0]) >> 8;
-    return $Char[$bank] if $Char[$bank];
-
-    {
-        DEBUG and printf "Loading %s::x%02x\n", __PACKAGE__, $bank;
-        local $SIG{'__DIE__'};
-        eval(sprintf 'require %s::x%02x;', __PACKAGE__, $bank);
-    }
-
-    # Now see how that fared...
-    if (ref($Char[$bank] || '') ne 'ARRAY') {
-        DEBUG > 1 and print " Loading failed for bank $bank (err $@).  Using null map.\n";
-        return $Char[$bank] = $NULLMAP;
-    }
-    else {
-        DEBUG > 1 and print " Succeeded.\n";
-        if (DEBUG) {
-            my $cb = $Char[$bank]; # Sanity-check it
-            unless (@$cb == 256) {
-                printf "Block x%02x is of size %d -- chopping to 256\n", scalar(@$cb);
-                $#$cb = 255;    # pre-extend the array, or chop it to size.
-            }
-            for (my $i = 0; $i < 256; ++$i) {
-                unless (defined $cb->[$i]) {
-                    printf "Undef at position %d in block x%02x\n", $i, $bank;
-                    $cb->[$i] = '';
-                }
-            }
-        }
-        return $Char[$bank];
-    }
-}
-
-1;
-
-__END__
-
-=head1 NAME
-
-Text::Unidecode -- US-ASCII transliterations of Unicode text
+our $NULLMAP = [('[?] ') x 0x100];    # for blocks we can't load
 
 =head1 SYNOPSIS
 
-  use utf8;
-  use Text::Unidecode;
-  print unidecode(
-    "\x{5317}\x{4EB0}\n"
-     # those are the Chinese characters for Beijing
-  );
-  
-  # That prints: Bei Jing 
+    use utf8;
+    use Text::Unidecode;
+    print unidecode("\x{5317}\x{4EB0}\n"); # Those are the Chinese characters for Beijing
+    # Prints 'Bei Jing'
 
 =head1 DESCRIPTION
 
@@ -120,7 +44,7 @@ almost always an attempt at I<transliteration> -- i.e., conveying,
 in Roman letters, the pronunciation expressed by the text in
 some other writing system.  (See the example in the synopsis.)
 
-Unidecode's ability to transliterate is limited by two factors:
+Text::Unidecode's ability to transliterate is limited by two factors:
 
 =over
 
@@ -166,8 +90,12 @@ shallow (not being meticulous about any of them).
 
 =head1 FUNCTIONS
 
-Text::Unidecode provides one function, C<unidecode(...)>, which
-is exported by default.  It can be used in a variety of calling contexts:
+Text::Unidecode provides one function, C<unidecode()>, which
+is exported by default.
+
+=head2 unidecode
+
+C<unidecode()> can be used in a variety of calling contexts:
 
 =over
 
@@ -245,6 +173,74 @@ the Armenian letter at 0x0539, currently transliterated as "T`", would
 be better transliterated as "D", I may well make that change.
 
 =back
+
+=cut
+
+sub unidecode { # Destructive in void context -- in other contexts, nondestructive.
+    unless (@_) {
+        # Nothing coming in
+        return wantarray ? () : '';
+    }
+    @_ = map { $_ } @_ if defined wantarray;
+
+    # We're in list or scalar context, NOT void context.
+    # So make @_'s items no longer be aliases.
+    # Otherwise, let @_ be aliases, and alter in-place.
+    foreach my $x (@_) {
+        next unless defined $x;
+        $x =~ s{                                        # Replace...
+            ([^\x00-\x7f])                              # character 0xABCD with...
+        }{
+            ${$Char[ord($1)>>8]||_t($1)}[ord($1)&255]   # $Char[0xAB][0xCD],
+        }egsx;                                          # loading the table as needed with _t()
+    }
+
+    return unless defined wantarray;    # void context
+    return @_ if wantarray;             # normal list context - return the copies
+                                        # else normal scalar context:
+    return $_[0] if @_ == 1;
+    return join '', @_;                 # rarer fallthrough: a list in, but a scalar out
+}
+
+sub _t {
+    # load (and return) a char table for this character
+    # this should get called only once per table per session.
+    my $bank = ord($_[0]) >> 8;
+    return $Char[$bank] if $Char[$bank];
+
+    {
+        DEBUG and printf "Loading %s::x%02x\n", __PACKAGE__, $bank;
+        local $SIG{'__DIE__'};
+        eval(sprintf 'require %s::x%02x;', __PACKAGE__, $bank);
+    }
+
+    # Now see how that fared...
+    if (ref($Char[$bank] || '') ne 'ARRAY') {
+        DEBUG > 1 and print " Loading failed for bank $bank (err $@).  Using null map.\n";
+        return $Char[$bank] = $NULLMAP;
+    }
+    else {
+        DEBUG > 1 and print " Succeeded.\n";
+        if (DEBUG) {
+            my $cb = $Char[$bank]; # Sanity-check it
+            unless (@$cb == 256) {
+                printf "Block x%02x is of size %d -- chopping to 256\n", scalar(@$cb);
+                $#$cb = 255;    # pre-extend the array, or chop it to size.
+            }
+            for (my $i = 0; $i < 256; ++$i) {
+                unless (defined $cb->[$i]) {
+                    printf "Undef at position %d in block x%02x\n", $i, $bank;
+                    $cb->[$i] = '';
+                }
+            }
+        }
+        return $Char[$bank];
+    }
+}
+
+1;
+
+__END__
 
 =head1 DESIGN GOALS AND CONSTRAINTS
 
@@ -327,13 +323,6 @@ Out of a desire to avoid being mired in I<any> of these kinds of
 contextual factors, I chose to exclude I<all of them> and just stick
 with context-insensitive replacement.
 
-=head1 TODO
-
-Things that need tending to are detailed in the TODO.txt file, included
-in this distribution.  Normal installs probably don't leave the TODO.txt
-lying around, but if nothing else, you can see it at
-http://search.cpan.org/search?dist=Text::Unidecode
-
 =head1 MOTTO
 
 The Text::Unidecode motto is:
@@ -354,23 +343,23 @@ L<perlunicode/perlunicode>.
 
 =head1 THANKS
 
-Thanks to Harald Tveit Alvestrand,
-Abhijit Menon-Sen, and Mark-Jason Dominus.
+Thanks to Harald Tveit Alvestrand, Abhijit Menon-Sen, and Mark-Jason Dominus.
 
 =head1 SEE ALSO
 
-Unicode Consortium: http://www.unicode.org/
+=over 4
 
-Geoffrey Sampson.  1990.  I<Writing Systems: A Linguistic Introduction.>
-ISBN: 0804717567
+=item * Unicode Consortium: L<http://www.unicode.org>
 
-Randall K. Barry (editor).  1997.  I<ALA-LC Romanization Tables:
+=item * Geoffrey Sampson.  1990.  I<Writing Systems: A Linguistic Introduction.> ISBN: 0804717567
+
+=item * Randall K. Barry (editor).  1997.  I<ALA-LC Romanization Tables:
 Transliteration Schemes for Non-Roman Scripts.>
 ISBN: 0844409405
 [ALA is the American Library Association; LC is the Library of
 Congress.]
 
-Rupert Snell.  2000.  I<Beginner's Hindi Script (Teach Yourself
+=item * Rupert Snell.  2000.  I<Beginner's Hindi Script (Teach Yourself
 Books).>  ISBN: 0658009109
 
 =head1 COPYRIGHT AND DISCLAIMERS
@@ -424,4 +413,3 @@ The lyrics are:
     and punctuation we adore!
 
 # End.
-

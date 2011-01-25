@@ -1,12 +1,10 @@
-require 5.006;
 use strict;
 use warnings;
 use utf8;
 use Test::More;
 use Text::Unidecode;
 
-my @tests = (
-    # Basic string tests
+my @tests = ( # Basic string tests
     "",
     1/10,
     "I like pie.",
