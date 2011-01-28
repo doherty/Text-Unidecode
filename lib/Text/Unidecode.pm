@@ -78,7 +78,7 @@ Russian and Greek seem to work passably; and
 while Thaana (Divehi, AKA Maldivian) is a definitely non-Western
 writing system, setting up a mapping from it to Roman letters
 seems to work pretty well.  But sometimes the output is I<very
-dirty:> Unidecode does quite badly on Japanese and Thai.
+dirty>: Unidecode does quite badly on Japanese and Thai.
 
 If you want a smarter transliteration for a particular language
 than Unidecode provides, then you should look for (or write)
@@ -147,14 +147,14 @@ characters -- i.e., characters 0x0000 - 0x007F.
 
 All Unicode characters translate to a sequence of (any number of)
 characters that are newline ("\n") or in the range 0x0020-0x007E.  That
-is, no Unicode character translates to "\x01", for example.  (Altho if
-you have a "\x01" on input, you'll get a "\x01" in output.)
+is, no Unicode character translates to "\x01", for example.  (Although if
+you have a "\x01" in input, you'll get a "\x01" in output.)
 
 =item *
 
 Yes, some transliterations produce a "\n" -- but just a few, and only
 with good reason.  Note that the value of newline ("\n") varies
-from platform to platform -- see L<perlport/perlport>.
+from platform to platform -- see L<perlport>.
 
 =item *
 
@@ -244,7 +244,7 @@ sub _t {
 This attempts to C<unidecode()> to any arbitrary charset, rather than to US-ASCII.
 The function is not exported by default.
 
-Pass the target charset as the first parameter (default is iso-8859-1), and the
+Pass the target charset as the first parameter (default is ascii), and the
 text to transliterate as the second.
 
 =cut
@@ -360,7 +360,7 @@ better than.
 
 If you get really implausible nonsense out of C<unidecode(...)>, make
 sure that the input data really is a utf8 string.  See
-L<perlunicode/perlunicode>.
+L<perlunicode>.
 
 =head1 THANKS
 
@@ -382,6 +382,8 @@ Congress.]
 
 =item * Rupert Snell.  2000.  I<Beginner's Hindi Script (Teach Yourself
 Books).>  ISBN: 0658009109
+
+=back
 
 =head1 COPYRIGHT AND DISCLAIMERS
 
