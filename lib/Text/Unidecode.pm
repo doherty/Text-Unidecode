@@ -210,18 +210,18 @@ sub _t {
     return $Char[$bank] if $Char[$bank];
 
     {
-        DEBUG and printf "Loading %s::x%02x\n", __PACKAGE__, $bank;
+        printf "Loading %s::x%02x\n", __PACKAGE__, $bank if DEBUG;
         local $SIG{'__DIE__'};
         eval(sprintf 'require %s::x%02x;', __PACKAGE__, $bank);
     }
 
     # Now see how that fared...
     if (ref($Char[$bank] || '') ne 'ARRAY') {
-        DEBUG > 1 and print " Loading failed for bank $bank (err $@).  Using null map.\n";
+        print " Loading failed for bank $bank (err $@).  Using null map.\n" if DEBUG > 1;
         return $Char[$bank] = $NULLMAP;
     }
     else {
-        DEBUG > 1 and print " Succeeded.\n";
+        print " Succeeded.\n" if DEBUG > 1;
         if (DEBUG) {
             my $cb = $Char[$bank]; # Sanity-check it
             unless (@$cb == 256) {
