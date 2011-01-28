@@ -7,7 +7,6 @@ package Text::Unidecode;
 
 use utf8;
 use integer;                # vroom vroom!
-use vars qw(@Char);
 
 use Exporter qw(import);
 our @EXPORT = qw(unidecode);
@@ -18,6 +17,7 @@ BEGIN {
         unless defined &DEBUG;
 }
 
+our @Char;
 our $NULLMAP = [('[?] ') x 0x100];    # for blocks we can't load
 
 =head1 SYNOPSIS
