@@ -246,7 +246,7 @@ sub _t {
     {
         printf "Loading %s::x%02x\n", __PACKAGE__, $bank if DEBUG;
         local $SIG{'__DIE__'};
-        eval(sprintf 'require %s::x%02x;', __PACKAGE__, $bank);
+        eval(sprintf 'require %s::x%02x;', __PACKAGE__, $bank); ## no critic (ProhibitStringyEval)
     }
 
     # Now see how that fared...
