@@ -19,7 +19,7 @@ BEGIN {
 }
 
 our @Char;
-our $NULLMAP = [('[?] ') x 0x100];    # for blocks we can't load
+our $NULLMAP = [('[?] ') x 0x100]; # for blocks we can't load
 
 =head1 SYNOPSIS
 
@@ -190,11 +190,11 @@ sub unidecode { # Destructive in void context -- in other contexts, nondestructi
     # Otherwise, let @_ be aliases, and alter in-place.
     foreach my $x (@_) {
         next unless defined $x;
-        $x =~ s{                                        # Replace...
-            ([^\x00-\x7f])                              # character 0xABCD with...
+        $x =~ s{                                          # Replace...
+            ([^\x00-\x7f])                                # character 0xABCD with...
         }{
-            ${$Char[ord($1)>>8]||_t($1)}[ord($1)&255]   # $Char[0xAB][0xCD],
-        }egsx;                                          # loading the table as needed with _t()
+            ${ $Char[ord($1)>>8] || _t($1) }[ord($1)&255] # $Char[0xAB][0xCD],
+        }egsx;                                            # loading the table as needed with _t()
     }
 
     return unless defined wantarray;    # void context
@@ -223,17 +223,17 @@ and the desired transliteration:
 sub remap {
     my $char  = shift;
     my $remap = shift;
-    carp "You can only remap one character at a time"
+    carp "You can only remap one character at a time ($char)"
         unless length($char) == 1;
 
-    my $bank = ord($char)>>8;
-    if (${ $Char[$bank] || _t($char) }[ord($char)&255] eq $char) { # load the char table if it wasn't already
-        $Char[$bank][ord($char)&255] = $remap; # not persistent outside this sub :(
-        warn $Text::Unidecode::{'Char'}->[$bank]->[ord($char)&255] if DEBUG;
+    my $bank  = ord($char)>>8;
+    my $bank2 = ord($char)&255;
+    {
+        no warnings qw(void);
+        ${ $Char[$bank] || _t($char) }[$bank2];
     }
-    else {
-        die 'something went horribly wrong';
-    }
+    $Char[$bank][$bank2] = $remap;
+
     return;
 }
 
