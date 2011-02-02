@@ -7,10 +7,11 @@ package Text::Unidecode;
 
 use utf8;
 use integer;                # vroom vroom!
+use Carp;
 
 use Exporter qw(import);
 our @EXPORT = qw(unidecode);
-our @EXPORT_OK = qw(unidecode_to_charset);
+our @EXPORT_OK = qw(unidecode_to_charset remap);
 
 BEGIN {
     *DEBUG = sub () { 0 }
@@ -201,6 +202,39 @@ sub unidecode { # Destructive in void context -- in other contexts, nondestructi
                                         # else normal scalar context:
     return $_[0] if @_ == 1;
     return join '', @_;                 # rarer fallthrough: a list in, but a scalar out
+}
+
+=head2 remap
+
+This remaps a transliteration temporarily. Give it one character,
+and the desired transliteration:
+
+    my %remap = (
+        'A' => 'omg',
+        'B' => 'really?!',
+    );
+    while (my ($char, $remap) = each %remap) {
+        remap($char, $remap);
+    }
+    print unidecode('ABCDE'); # see your alternate transliterations
+
+=cut
+
+sub remap {
+    my $char  = shift;
+    my $remap = shift;
+    carp "You can only remap one character at a time"
+        unless length($char) == 1;
+
+    my $bank = ord($char)>>8;
+    if (${ $Char[$bank] || _t($char) }[ord($char)&255] eq $char) { # load the char table if it wasn't already
+        $Char[$bank][ord($char)&255] = $remap; # not persistent outside this sub :(
+        warn $Text::Unidecode::{'Char'}->[$bank]->[ord($char)&255] if DEBUG;
+    }
+    else {
+        die 'something went horribly wrong';
+    }
+    return;
 }
 
 sub _t {
