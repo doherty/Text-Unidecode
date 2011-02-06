@@ -419,23 +419,11 @@ Books).>  ISBN: 0658009109
 
 =back
 
-=head1 COPYRIGHT AND DISCLAIMERS
+=begin Pod::Coverage
 
-Copyright (c) 2001 Sean M. Burke. All rights reserved.
+DEBUG
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-This program is distributed in the hope that it will be useful, but
-without any warranty; without even the implied warranty of
-merchantability or fitness for a particular purpose.
-
-Much of Text::Unidecode's internal data is based on data from The
-Unicode Consortium, with which I am unafiliated.
-
-=head1 AUTHOR
-
-Sean M. Burke C<sburke@cpan.org>
+=end Pod::Coverage
 
 =cut
 

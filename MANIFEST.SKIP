@@ -1,3 +1,5 @@
 Makefile$
 ~$
 .tar.gz$
+^Makefile\.PL$
+^MANIFEST\.SKIP$

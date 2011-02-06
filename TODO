@@ -1,7 +1,6 @@
 Text::Unidecode Transliteration Notes -- TODO FILE
 
 * General:
-    - Temporary in-memory remapping of transliterations
     - Update documentation with an example of how this module
       is suggested to be used (as a final level of fallback)
 
