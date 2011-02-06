@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:42 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xd1] = [
 'tyal', 'tyalg', 'tyalm', 'tyalb', 'tyals', 'tyalt', 'tyalp', 'tyalh', 'tyam', 'tyab', 'tyabs', 'tyas', 'tyass', 'tyang', 'tyaj', 'tyac',
 'tyak', 'tyat', 'tyap', 'tyah', 'tyae', 'tyaeg', 'tyaegg', 'tyaegs', 'tyaen', 'tyaenj', 'tyaenh', 'tyaed', 'tyael', 'tyaelg', 'tyaelm', 'tyaelb',

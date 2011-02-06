@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:22 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0x15] = [
 'swa', 'swa', 'swaa', 'swaa', 'swaa', 's', 's', 'sw', 's', 'sk', 'skw', 'sW', 'spwa', 'stwa', 'skwa', 'scwa',
 'she', 'shi', 'shii', 'sho', 'shoo', 'sha', 'shaa', 'shwe', 'shwe', 'shwi', 'shwi', 'shwii', 'shwii', 'shwo', 'shwo', 'shwoo',

@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:42 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xcf] = [
 'ke', 'keg', 'kegg', 'kegs', 'ken', 'kenj', 'kenh', 'ked', 'kel', 'kelg', 'kelm', 'kelb', 'kels', 'kelt', 'kelp', 'kelh',
 'kem', 'keb', 'kebs', 'kes', 'kess', 'keng', 'kej', 'kec', 'kek', 'ket', 'kep', 'keh', 'kyeo', 'kyeog', 'kyeogg', 'kyeogs',

@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:22 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0x16] = [
 'kka', 'kk', 'nu', 'no', 'ne', 'nee', 'ni', 'na', 'mu', 'mo', 'me', 'mee', 'mi', 'ma', 'yu', 'yo',
 'ye', 'yee', 'yi', 'ya', 'ju', 'ju', 'jo', 'je', 'jee', 'ji', 'ji', 'ja', 'jju', 'jjo', 'jje', 'jjee',

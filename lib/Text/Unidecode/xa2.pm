@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:36 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xa2] = [
 'kax', 'ka', 'kap', 'kuox', 'kuo', 'kuop', 'kot', 'kox', 'ko', 'kop', 'ket', 'kex', 'ke', 'kep', 'kut', 'kux',
 'ku', 'kup', 'kurx', 'kur', 'ggit', 'ggix', 'ggi', 'ggiex', 'ggie', 'ggiep', 'ggat', 'ggax', 'gga', 'ggap', 'gguot', 'gguox',

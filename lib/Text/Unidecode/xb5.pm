@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:38 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xb5] = [
 'dyil', 'dyilg', 'dyilm', 'dyilb', 'dyils', 'dyilt', 'dyilp', 'dyilh', 'dyim', 'dyib', 'dyibs', 'dyis', 'dyiss', 'dying', 'dyij', 'dyic',
 'dyik', 'dyit', 'dyip', 'dyih', 'di', 'dig', 'digg', 'digs', 'din', 'dinj', 'dinh', 'did', 'dil', 'dilg', 'dilm', 'dilb',

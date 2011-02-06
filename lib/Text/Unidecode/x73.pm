@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:32 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0x73] = [
 'Sha ', 'Li ', 'Han ', 'Xian ', 'Jing ', 'Pai ', 'Fei ', 'Yao ', 'Ba ', 'Qi ', 'Ni ', 'Biao ', 'Yin ', 'Lai ', 'Xi ', 'Jian ',
 'Qiang ', 'Kun ', 'Yan ', 'Guo ', 'Zong ', 'Mi ', 'Chang ', 'Yi ', 'Zhi ', 'Zheng ', 'Ya ', 'Meng ', 'Cai ', 'Cu ', 'She ', 'Kari ',

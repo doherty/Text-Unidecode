@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:24 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0x33] = [
 'apartment', 'alpha', 'ampere', 'are', 'inning', 'inch', 'won', 'escudo', 'acre', 'ounce', 'ohm', qq{kai-ri}, 'carat', 'calorie', 'gallon', 'gamma',
 'giga', 'guinea', 'curie', 'guilder', 'kilo', 'kilogram', 'kilometer', 'kilowatt', 'gram', 'gram ton', 'cruzeiro', 'krone', 'case', 'koruna', qq{co-op}, 'cycle',

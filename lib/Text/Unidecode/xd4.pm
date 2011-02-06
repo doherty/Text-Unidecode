@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:42 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xd4] = [
 'poss', 'pong', 'poj', 'poc', 'pok', 'pot', 'pop', 'poh', 'pwa', 'pwag', 'pwagg', 'pwags', 'pwan', 'pwanj', 'pwanh', 'pwad',
 'pwal', 'pwalg', 'pwalm', 'pwalb', 'pwals', 'pwalt', 'pwalp', 'pwalh', 'pwam', 'pwab', 'pwabs', 'pwas', 'pwass', 'pwang', 'pwaj', 'pwac',

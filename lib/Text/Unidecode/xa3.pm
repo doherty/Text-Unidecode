@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:36 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xa3] = [
 'nzup', 'nzurx', 'nzur', 'nzyt', 'nzyx', 'nzy', 'nzyp', 'nzyrx', 'nzyr', 'sit', 'six', 'si', 'sip', 'siex', 'sie', 'siep',
 'sat', 'sax', 'sa', 'sap', 'suox', 'suo', 'suop', 'sot', 'sox', 'so', 'sop', 'sex', 'se', 'sep', 'sut', 'sux',

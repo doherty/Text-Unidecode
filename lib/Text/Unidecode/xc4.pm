@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:40 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xc4] = [
 'sswals', 'sswalt', 'sswalp', 'sswalh', 'sswam', 'sswab', 'sswabs', 'sswas', 'sswass', 'sswang', 'sswaj', 'sswac', 'sswak', 'sswat', 'sswap', 'sswah',
 'sswae', 'sswaeg', 'sswaegg', 'sswaegs', 'sswaen', 'sswaenj', 'sswaenh', 'sswaed', 'sswael', 'sswaelg', 'sswaelm', 'sswaelb', 'sswaels', 'sswaelt', 'sswaelp', 'sswaelh',

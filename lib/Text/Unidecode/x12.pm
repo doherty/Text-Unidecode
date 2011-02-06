@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:22 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0x12] = [
 'ha', 'hu', 'hi', 'haa', 'hee', 'he', 'ho', '[?]', 'la', 'lu', 'li', 'laa', 'lee', 'le', 'lo', 'lwa',
 'hha', 'hhu', 'hhi', 'hhaa', 'hhee', 'hhe', 'hho', 'hhwa', 'ma', 'mu', 'mi', 'maa', 'mee', 'me', 'mo', 'mwa',

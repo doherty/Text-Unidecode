@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:42 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xcd] = [
 'cyess', 'cyeng', 'cyej', 'cyec', 'cyek', 'cyet', 'cyep', 'cyeh', 'co', 'cog', 'cogg', 'cogs', 'con', 'conj', 'conh', 'cod',
 'col', 'colg', 'colm', 'colb', 'cols', 'colt', 'colp', 'colh', 'com', 'cob', 'cobs', 'cos', 'coss', 'cong', 'coj', 'coc',

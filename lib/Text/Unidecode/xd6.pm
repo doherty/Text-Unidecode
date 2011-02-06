@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:43 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xd6] = [
 'hyeo', 'hyeog', 'hyeogg', 'hyeogs', 'hyeon', 'hyeonj', 'hyeonh', 'hyeod', 'hyeol', 'hyeolg', 'hyeolm', 'hyeolb', 'hyeols', 'hyeolt', 'hyeolp', 'hyeolh',
 'hyeom', 'hyeob', 'hyeobs', 'hyeos', 'hyeoss', 'hyeong', 'hyeoj', 'hyeoc', 'hyeok', 'hyeot', 'hyeop', 'hyeoh', 'hye', 'hyeg', 'hyegg', 'hyegs',

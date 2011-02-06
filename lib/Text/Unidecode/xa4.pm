@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:37 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xa4] = [
 'qiet', 'qiex', 'qie', 'qiep', 'quot', 'quox', 'quo', 'quop', 'qot', 'qox', 'qo', 'qop', 'qut', 'qux', 'qu', 'qup',
 'qurx', 'qur', 'qyt', 'qyx', 'qy', 'qyp', 'qyrx', 'qyr', 'jjit', 'jjix', 'jji', 'jjip', 'jjiet', 'jjiex', 'jjie', 'jjiep',

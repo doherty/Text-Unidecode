@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:43 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xd5] = [
 'pyuk', 'pyut', 'pyup', 'pyuh', 'peu', 'peug', 'peugg', 'peugs', 'peun', 'peunj', 'peunh', 'peud', 'peul', 'peulg', 'peulm', 'peulb',
 'peuls', 'peult', 'peulp', 'peulh', 'peum', 'peub', 'peubs', 'peus', 'peuss', 'peung', 'peuj', 'peuc', 'peuk', 'peut', 'peup', 'peuh',

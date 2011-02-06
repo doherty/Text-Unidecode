@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:24 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0x32] = [
 qq{(g)}, qq{(n)}, qq{(d)}, qq{(r)}, qq{(m)}, qq{(b)}, qq{(s)}, qq{()}, qq{(j)}, qq{(c)}, qq{(k)}, qq{(t)}, qq{(p)}, qq{(h)}, qq{(ga)}, qq{(na)},
 qq{(da)}, qq{(ra)}, qq{(ma)}, qq{(ba)}, qq{(sa)}, qq{(a)}, qq{(ja)}, qq{(ca)}, qq{(ka)}, qq{(ta)}, qq{(pa)}, qq{(ha)}, qq{(ju)}, '[?]', '[?]', '[?]',

@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:35 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0x95] = [
 'Xiao ', 'Suo ', 'Li ', 'Zheng ', 'Chu ', 'Guo ', 'Gao ', 'Tie ', 'Xiu ', 'Cuo ', 'Lue ', 'Feng ', 'Xin ', 'Liu ', 'Kai ', 'Jian ',
 'Rui ', 'Ti ', 'Lang ', 'Qian ', 'Ju ', 'A ', 'Qiang ', 'Duo ', 'Tian ', 'Cuo ', 'Mao ', 'Ben ', 'Qi ', 'De ', 'Kua ', 'Kun ',

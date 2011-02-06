@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:39 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xb9] = [
 'ruk', 'rut', 'rup', 'ruh', 'rweo', 'rweog', 'rweogg', 'rweogs', 'rweon', 'rweonj', 'rweonh', 'rweod', 'rweol', 'rweolg', 'rweolm', 'rweolb',
 'rweols', 'rweolt', 'rweolp', 'rweolh', 'rweom', 'rweob', 'rweobs', 'rweos', 'rweoss', 'rweong', 'rweoj', 'rweoc', 'rweok', 'rweot', 'rweop', 'rweoh',

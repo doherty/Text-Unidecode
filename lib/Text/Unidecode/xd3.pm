@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:42 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xd3] = [
 'tim', 'tib', 'tibs', 'tis', 'tiss', 'ting', 'tij', 'tic', 'tik', 'tit', 'tip', 'tih', 'pa', 'pag', 'pagg', 'pags',
 'pan', 'panj', 'panh', 'pad', 'pal', 'palg', 'palm', 'palb', 'pals', 'palt', 'palp', 'palh', 'pam', 'pab', 'pabs', 'pas',

@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:43 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xd7] = [
 'hwen', 'hwenj', 'hwenh', 'hwed', 'hwel', 'hwelg', 'hwelm', 'hwelb', 'hwels', 'hwelt', 'hwelp', 'hwelh', 'hwem', 'hweb', 'hwebs', 'hwes',
 'hwess', 'hweng', 'hwej', 'hwec', 'hwek', 'hwet', 'hwep', 'hweh', 'hwi', 'hwig', 'hwigg', 'hwigs', 'hwin', 'hwinj', 'hwinh', 'hwid',

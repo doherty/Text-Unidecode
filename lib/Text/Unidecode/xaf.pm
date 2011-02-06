@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:37 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xaf] = [
 'ggyeols', 'ggyeolt', 'ggyeolp', 'ggyeolh', 'ggyeom', 'ggyeob', 'ggyeobs', 'ggyeos', 'ggyeoss', 'ggyeong', 'ggyeoj', 'ggyeoc', 'ggyeok', 'ggyeot', 'ggyeop', 'ggyeoh',
 'ggye', 'ggyeg', 'ggyegg', 'ggyegs', 'ggyen', 'ggyenj', 'ggyenh', 'ggyed', 'ggyel', 'ggyelg', 'ggyelm', 'ggyelb', 'ggyels', 'ggyelt', 'ggyelp', 'ggyelh',

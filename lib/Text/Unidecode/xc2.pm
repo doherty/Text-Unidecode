@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:40 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xc2] = [
 'syon', 'syonj', 'syonh', 'syod', 'syol', 'syolg', 'syolm', 'syolb', 'syols', 'syolt', 'syolp', 'syolh', 'syom', 'syob', 'syobs', 'syos',
 'syoss', 'syong', 'syoj', 'syoc', 'syok', 'syot', 'syop', 'syoh', 'su', 'sug', 'sugg', 'sugs', 'sun', 'sunj', 'sunh', 'sud',

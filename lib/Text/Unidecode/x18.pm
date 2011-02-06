@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:22 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0x18] = [
 qq{ \@ }, qq{ ... }, qq{, }, qq{. }, qq{: }, qq{ // }, "", qq{-}, qq{, }, qq{. }, "", "", "", "", "", '[?]',
 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]',

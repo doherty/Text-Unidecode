@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:42 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xcb] = [
 'jjwaels', 'jjwaelt', 'jjwaelp', 'jjwaelh', 'jjwaem', 'jjwaeb', 'jjwaebs', 'jjwaes', 'jjwaess', 'jjwaeng', 'jjwaej', 'jjwaec', 'jjwaek', 'jjwaet', 'jjwaep', 'jjwaeh',
 'jjoe', 'jjoeg', 'jjoegg', 'jjoegs', 'jjoen', 'jjoenj', 'jjoenh', 'jjoed', 'jjoel', 'jjoelg', 'jjoelm', 'jjoelb', 'jjoels', 'jjoelt', 'jjoelp', 'jjoelh',

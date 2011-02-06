@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:43 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xf9] = [
 'Kay ', 'Kayng ', 'Ke ', 'Ko ', 'Kol ', 'Koc ', 'Kwi ', 'Kwi ', 'Kyun ', 'Kul ', 'Kum ', 'Na ', 'Na ', 'Na ', 'La ', 'Na ',
 'Na ', 'Na ', 'Na ', 'Na ', 'Nak ', 'Nak ', 'Nak ', 'Nak ', 'Nak ', 'Nak ', 'Nak ', 'Nan ', 'Nan ', 'Nan ', 'Nan ', 'Nan ',

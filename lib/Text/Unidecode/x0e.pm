@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:21 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0x0e] = [
 '[?]', 'k', 'kh', 'kh', 'kh', 'kh', 'kh', 'ng', 'cch', 'ch', 'ch', 'ch', 'ch', 'y', 'd', 't',
 'th', 'th', 'th', 'n', 'd', 't', 'th', 'th', 'th', 'n', 'b', 'p', 'ph', 'f', 'ph', 'f',

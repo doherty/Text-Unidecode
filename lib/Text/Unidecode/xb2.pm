@@ -1,4 +1,6 @@
 # Time-stamp: "Sat Jul 14 00:27:37 2001 by Automatic Bizooty (__blocks2pm.plx)"
+use strict;
+use warnings;
 $Text::Unidecode::Char[0xb2] = [
 'nyok', 'nyot', 'nyop', 'nyoh', 'nu', 'nug', 'nugg', 'nugs', 'nun', 'nunj', 'nunh', 'nud', 'nul', 'nulg', 'nulm', 'nulb',
 'nuls', 'nult', 'nulp', 'nulh', 'num', 'nub', 'nubs', 'nus', 'nuss', 'nung', 'nuj', 'nuc', 'nuk', 'nut', 'nup', 'nuh',
