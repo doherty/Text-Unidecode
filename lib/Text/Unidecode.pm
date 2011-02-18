@@ -1,10 +1,9 @@
+package Text::Unidecode;
+# ABSTRACT: US-ASCII transliterations of Unicode text
 use strict;
 use warnings;
 require 5.006;
-
-package Text::Unidecode;
-# ABSTRACT: US-ASCII transliterations of Unicode text
-
+# VERSION
 use utf8;
 use integer;                # vroom vroom!
 use Carp;
