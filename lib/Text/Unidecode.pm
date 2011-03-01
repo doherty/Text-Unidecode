@@ -94,28 +94,33 @@ shallow (not being meticulous about any of them).
 Text::Unidecode provides one function, C<unidecode()>, which
 is exported by default.
 
+Two more may be imported explicitly: C<unidecode_to_charset()>,
+which operates like unidecode, but transliterates into any
+specified character set, and C<remap()>, which allows
+on-the-fly re-mapping of transliterations.
+
 =head2 unidecode
 
 C<unidecode()> can be used in a variety of calling contexts:
 
 =over
 
-=item C<$out = unidecode($in);> # scalar context
+=item C<$out = unidecode($in); # scalar context>
 
 This returns a copy of $in, transliterated.
 
-=item C<$out = unidecode(@in);> # scalar context
+=item C<$out = unidecode(@in); # scalar context>
 
 This is the same as C<$out = unidecode(join '', @in);>
 
-=item C<@out = unidecode(@in);> # list context
+=item C<@out = unidecode(@in); # list context>
 
 This returns a list consisting of copies of @in, each transliterated.  This
 is the same as C<@out = map scalar(unidecode($_)), @in;>
 
-=item C<unidecode(@items);> # void context
+=item C<unidecode(@items); # void context>
 
-=item C<unidecode(@bar, $foo, @baz);> # void context
+=item C<unidecode(@bar, $foo, @baz); # void context>
 
 Each item on input is replaced with its transliteration.  This
 is the same as C<for(@bar, $foo, @baz) { $_ = unidecode($_) }>
@@ -418,11 +423,7 @@ Books).>  ISBN: 0658009109
 
 =back
 
-=begin Pod::Coverage
-
-DEBUG
-
-=end Pod::Coverage
+=for Pod::Coverage DEBUG
 
 =cut
 
