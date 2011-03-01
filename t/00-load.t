@@ -11,4 +11,4 @@ binmode $builder->todo_output,    ":encoding(UTF-8)";
 use_ok('Text::Unidecode');
 
 my $x = join '', "\x00" .. "\x7F";
-is(unidecode($x), $x, '7-big purity test');
+is(unidecode($x), $x, '7-bit purity test');

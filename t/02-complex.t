@@ -25,6 +25,7 @@ my $tests = {
     # If we were doing this right, it should come out as "malayalaam" - not "mlyaalm"
     "\x{0d2e}\x{0d32}\x{0d2f}\x{0d3e}\x{0d32}\x{0d2e}\x{0d4d}" => "mlyaalm",
     "\x{3052}\x{3093}\x{307e}\x{3044}\x{8336}" => "genmaiCha ", # Japanese
+    'perl5i is MËTÁŁ' => 'perl5i is METAL', # from perl5i.pm
 };
 plan tests => scalar keys %$tests;
 
