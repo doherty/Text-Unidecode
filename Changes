@@ -5,6 +5,7 @@ Revision history for Perl module Text::Unidecode
     * Fixed missing variable in debugging sprintf
     * Add unidecode_to_charset() to decode into an arbitrary charset (ascii by default)
     * Allow on-the-fly remapping of transliterations with remap()
+    * Encode 2.12 required for coderef support
 
 2001-07-14  Sean M. Burke  sburke@cpan.org
     * Release 0.04 -- forgot to put TODO.txt in 0.03.  Now including
